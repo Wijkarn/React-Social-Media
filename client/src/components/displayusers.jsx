@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
+
 export default function DisplayUsers() {
 
-    const [backendData, setBackendData] = useState([{}]);
+    const [users, setUsers] = useState([{}]);
 
     useEffect(() => {
         fetch("/api")
             .then(response => response.json())
             .then(data => {
-                setBackendData(data.users);
+                setUsers(data.users);
             });
 
     }, []);
 
     return (
         <ol>
-            {(typeof backendData === "undefined") ? (
+            {(typeof users === "undefined") ? (
                 <li>Loading...</li>
             ) : (
-                Object.keys(backendData).map(username => (
-                    <li key={username}>{backendData[username].firstname} {backendData[username].lastname}</li>
+                Object.keys(users).map(username => (
+                    <li key={username}>{users[username].firstname} {users[username].lastname}</li>
                 ))
-
             )}
         </ol>
     );
