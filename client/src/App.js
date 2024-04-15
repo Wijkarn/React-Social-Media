@@ -1,30 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import DisplayUsers from "./components/displayusers";
+import Navbar from "./components/Navbar/navbar";
+import "./css/App.css"
 
-function App() {
-
-  const [backendData, setBackendData] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/api")
-      .then(response => response.json())
-      .then(data => {
-        setBackendData(data);
-      });
-  }, []);
-
+export default function App() {
   return (
-    <div>
-
-      {(typeof backendData.users === "undefined") ? (
-        <p>Loading...</p>
-      ) : (
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-
-    </div>
+    <>
+      <Navbar></Navbar>
+      <DisplayUsers></DisplayUsers>
+    </>
   );
 }
-
-export default App;

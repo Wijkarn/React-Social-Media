@@ -1,0 +1,21 @@
+:root {
+    --nav-height: 100px;
+}
+
+nav {
+    max-height: var(--nav-height);
+    background-color: darkgray;
+    display: flex;
+    justify-content: center;
+}
+
+#nav-user-icon {
+    max-width: 50px;
+    aspect-ratio: 1/1;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
