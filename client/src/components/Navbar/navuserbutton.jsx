@@ -1,8 +1,10 @@
-export default function NavUserButton() {
+import { NavLink } from "react-router-dom";
+
+export default function NavUserButton({ username }) {
     return (
-        <a className="nav-buttons">
-            <img src="./assets/falcon512.png" alt="User" id="nav-user-icon" />
-            <span>Username</span>
-        </a>
+        <NavLink className="nav-buttons" to={username ? `/profile/${username}` : "/profile"}>
+            <img src="../assets/falcon512.png" alt="Profile" id="nav-user-icon" />
+            <span>Profile</span>
+        </NavLink>
     );
 }

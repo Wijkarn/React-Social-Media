@@ -6,10 +6,11 @@ Run these commands in terminal
 ```bash
 cd server
 npm run dev
-cd ..
+```
+Start a new terminal in project
+```bash
 cd client
 npm start
-dc ..
 ```
 
 ## To stop double render

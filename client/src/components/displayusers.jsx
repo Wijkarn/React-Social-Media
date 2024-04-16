@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function DisplayUsers() {
-
-    const [users, setUsers] = useState([{}]);
+    const [users, setUsers] = useState(null);
 
     useEffect(() => {
         fetch("/api")
@@ -10,17 +10,16 @@ export default function DisplayUsers() {
             .then(data => {
                 setUsers(data.users);
             });
-
     }, []);
 
     return (
         <ol>
-            {(typeof users === "undefined") ? (
-                <li>Loading...</li>
-            ) : (
+            {users ? (
                 Object.keys(users).map(username => (
-                    <li key={username}>{users[username].firstname} {users[username].lastname}</li>
+                    <li key={username}><NavLink to={username}>{users[username].firstname} {users[username].lastname}</NavLink></li>
                 ))
+            ) : (
+                <li>Loading...</li>
             )}
         </ol>
     );
