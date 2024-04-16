@@ -2,14 +2,14 @@
 
 ## To start
 
-Inside the server
+Run these commands in terminal
 ```bash
+cd server
 npm run dev
-```
-
-Inside the client
-```bash
+cd ..
+cd client
 npm start
+dc ..
 ```
 
 ## To stop double render
