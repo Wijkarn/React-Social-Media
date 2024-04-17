@@ -1,5 +1,5 @@
 import React from "react";
-import DisplayUsers from "../components/displayusers";
+import DisplayUsers from "../components/DisplayUsers";
 import Navbar from "../components/Navbar/Navbar";
 import "../css/App.css";
 import { useParams } from "react-router-dom";
