@@ -2,16 +2,17 @@
     --nav-height: 100px;
 }
 
-nav {
-    max-height: var(--nav-height);
-    background-color: darkgray;
+#top-nav {
+    /* max-height: var(--nav-height); */
+    background-color: #1b1b1b;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
 }
 
 #nav-user-icon {
-    max-width: 50px;
+    max-width: 45px;
     aspect-ratio: 1/1;
 }
 
@@ -19,4 +20,15 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: .2% 1%;
+    border-radius: .5vw;
+    text-decoration: none;
+    font-size: large;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px;
+}
+
+.nav-buttons:hover{
+    background-color: darkgray;
+    color: black;
 }

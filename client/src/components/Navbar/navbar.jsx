@@ -1,14 +1,14 @@
+import "../../css/Navbar.css";
 import NavUserButton from "./NavUserButton";
 import NavLoginBtn from "./NavLoginButton";
-import "../../css/Navbar.css";
 import { Link } from "react-router-dom";
 
 export default function Navbar({ username }) {
     return (
-        <nav>
-            <Link to="/">HomePage</Link>
-            <NavLoginBtn></NavLoginBtn>
+        <nav id="top-nav">
+            <Link to="/" className="nav-buttons">HomePage</Link>
             <NavUserButton username={username}></NavUserButton>
+            <NavLoginBtn></NavLoginBtn>
         </nav>
     );
 }
