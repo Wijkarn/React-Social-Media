@@ -1,7 +1,8 @@
 {
   "name": "client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "proxy": "http://localhost:5000",
+  "author": "Wijkarn",
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

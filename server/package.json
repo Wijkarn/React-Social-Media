@@ -9,7 +9,7 @@
     "dev": "nodemon server"
   },
   "keywords": [],
-  "author": "",
+  "author": "Wijkarn",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
