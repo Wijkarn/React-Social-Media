@@ -19,3 +19,9 @@ body {
 li>a[aria-current] {
   color: red;
 }
+
+#not-found-page-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

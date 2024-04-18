@@ -1,6 +1,6 @@
 import "../css/LoginForm.css";
 
-export default function loginForm() {
+export default function loginForm({ setUsername }) {
 
     async function handleClick(e) {
         e.preventDefault();
@@ -9,9 +9,10 @@ export default function loginForm() {
         const username = formData.get("username");
         const password = formData.get("password");
 
-        console.log(username, password);
-
-        const cred = { username, password }
+        const cred = {
+            username,
+            password
+        }
 
         const response = await fetch("/login", {
             method: "POST",
@@ -22,11 +23,11 @@ export default function loginForm() {
         });
 
         const data = await response.json();
-        console.log(data);
 
         if (data.loggedIn) {
             localStorage.setItem("uuid", data.loggedIn);
             localStorage.setItem("username", username);
+            setUsername(username);
         }
         else {
             localStorage.clear();

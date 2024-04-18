@@ -1,15 +1,15 @@
 import React from "react";
 import DisplayUsers from "../components/DisplayUsers";
-import Navbar from "../components/Navbar/Navbar";
 import "../css/App.css";
 import { useParams } from "react-router-dom";
+//import { useOutletContext } from "react-router-dom";
 
 export default function Profile() {
   const params = useParams();
+  //const [username, setUsername] = useOutletContext();
   return (
     <>
-      <Navbar username={params.username}></Navbar>
-      <DisplayUsers></DisplayUsers>
+      <DisplayUsers />
       <h1>{params.username}</h1>
     </>
   );

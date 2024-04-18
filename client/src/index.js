@@ -1,31 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import HomePage from './pages/Homepage';
+import App from './App';
 import Profile from './pages/Profile';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFoundPage from './pages/NotFoundPage';
 import Login from './pages/LoginPage';
+import HomePage from './pages/Homepage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-    errorElement: <NotFoundPage />
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
+    element: <App />,
+    errorElement: <NotFoundPage />,
     children: [
       {
-        path: "/profile/:username",
-        element: <Profile />
+        path: "/home",
+        element: <HomePage />
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+        children: [
+          {
+            path: "/profile/:username",
+            element: <Profile />
+          }
+        ]
+      },
+      {
+        path: "/login",
+        element: <Login />
       }
     ]
-  },
-  {
-    path: "/login",
-    element: <Login />
   }
 ]);
 

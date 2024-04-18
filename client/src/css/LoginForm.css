@@ -5,6 +5,7 @@
 
 #login-form>* {
     border: black 1px solid;
+    padding: 1%;
 }
 
 #form-div {

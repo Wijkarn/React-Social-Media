@@ -9,6 +9,6 @@ export default function logInBtn() {
     }
 
     return (
-        <NavLink to="/login" className="nav-buttons">{getUsername() ? "Logout" : "Login"}</NavLink>
+        <NavLink to={getUsername() ? "/home" : "/login"} className="nav-buttons">{getUsername() ? "Logout" : "Login"}</NavLink>
     );
 }

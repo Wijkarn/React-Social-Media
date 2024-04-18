@@ -1,12 +1,10 @@
 import "../css/App.css";
-import Navbar from "../components/Navbar/Navbar";
 import LoginForm from "../components/LoginForm";
+import { useOutletContext } from "react-router-dom";
 
 export default function HomePage() {
+  const [, setUsername] = useOutletContext();
   return (
-    <>
-      <Navbar></Navbar>
-      <LoginForm></LoginForm>
-    </>
+    <LoginForm setUsername={setUsername} />
   );
 }

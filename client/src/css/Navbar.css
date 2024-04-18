@@ -1,10 +1,5 @@
-:root {
-    --nav-height: 100px;
-}
-
 #top-nav {
-    /* max-height: var(--nav-height); */
-    background-color: #1b1b1b;
+    background-color: #9147ff;
     display: flex;
     justify-content: space-around;
     align-items: center;
