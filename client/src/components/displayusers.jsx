@@ -8,7 +8,9 @@ export default function DisplayUsers() {
         fetch("/api")
             .then(response => response.json())
             .then(data => {
-                setUsers(data.users);
+                if (data) {
+                    setUsers(data.users);
+                }
             });
     }, []);
 

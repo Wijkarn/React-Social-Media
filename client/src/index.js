@@ -5,7 +5,7 @@ import Profile from './pages/Profile';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFoundPage from './pages/NotFoundPage';
-import Login from './pages/LoginPage';
+import Login from './pages/LogInOutPage';
 import HomePage from './pages/Homepage';
 
 const router = createBrowserRouter([

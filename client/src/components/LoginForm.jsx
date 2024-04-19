@@ -2,7 +2,7 @@ import "../css/LoginForm.css";
 
 export default function loginForm({ setUsername }) {
 
-    async function handleClick(e) {
+    async function handleLogin(e) {
         e.preventDefault();
 
         const formData = new FormData(e.target);
@@ -17,7 +17,7 @@ export default function loginForm({ setUsername }) {
         const response = await fetch("/login", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(cred)
         });
@@ -28,6 +28,7 @@ export default function loginForm({ setUsername }) {
             localStorage.setItem("uuid", data.loggedIn);
             localStorage.setItem("username", username);
             setUsername(username);
+            window.location.replace("/home");
         }
         else {
             localStorage.clear();
@@ -37,10 +38,10 @@ export default function loginForm({ setUsername }) {
     return (
         <div id="form-div">
             <h2>Login</h2>
-            <form onSubmit={handleClick} id="login-form">
+            <form onSubmit={handleLogin} id="login-form">
                 <label htmlFor="username">Username:</label>
                 <input type="text" name="username" id="form-username" required />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Password:</label>
                 <input type="password" name="password" id="form-password" required />
                 <button type="submit">Login</button>
             </form>
