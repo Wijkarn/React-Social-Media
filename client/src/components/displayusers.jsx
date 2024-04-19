@@ -5,13 +5,22 @@ export default function DisplayUsers() {
     const [users, setUsers] = useState(null);
 
     useEffect(() => {
-        fetch("/api")
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    setUsers(data.users);
-                }
-            });
+        async function getUsers() {
+            try {
+                await fetch("/api")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            setUsers(data.users);
+                        }
+                    });
+            }
+            catch (e) {
+                console.error(e);
+                alert("Error getting users!");
+            }
+        }
+        getUsers();
     }, []);
 
     return (

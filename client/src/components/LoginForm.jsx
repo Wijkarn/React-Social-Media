@@ -37,13 +37,13 @@ export default function loginForm({ setUsername }) {
 
     return (
         <div id="form-div">
-            <h2>Login</h2>
+            <h1>Login</h1>
             <form onSubmit={handleLogin} id="login-form">
-                <label htmlFor="username">Username:</label>
-                <input type="text" name="username" id="form-username" required />
-                <label htmlFor="password">Password:</label>
-                <input type="password" name="password" id="form-password" required />
-                <button type="submit">Login</button>
+                <label htmlFor="form-username">Username:</label>
+                <input type="text" name="username" id="form-username" required autoComplete="username"/>
+                <label htmlFor="form-password">Password:</label>
+                <input type="password" name="password" id="form-password" required autoComplete="off"/>
+                <button type="submit" id="log-in-out-btn">Login</button>
             </form>
         </div>
     );

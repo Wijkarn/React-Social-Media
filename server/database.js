@@ -66,9 +66,42 @@ async function getAllUsers() {
     return null;
 }
 
+async function registerUser(userData) {
+    try {
+        const userExists = await getUser(Object.keys(userData)[0]);
+
+        if (!userExists) {
+            const fbUrl = `${getUrl()}users.json`;
+            const options = {
+                method: "PATCH",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify(userData)
+            }
+
+            const registered = await fetch(fbUrl, options);
+            const data = await registered.json();
+            return data ? true : false;
+        }
+        return null;
+    }
+    catch (e) {
+        console.error(e);
+    }
+}
+
+async function getUser(username) {
+    const fbUrl = `${getUrl()}users/${username}.json`;
+    const response = await fetch(fbUrl);
+    const data = await response.json();
+    return data;
+}
+
 module.exports = {
     login,
     setUuid,
     getUuid,
-    getAllUsers
+    getAllUsers,
+    registerUser
 }

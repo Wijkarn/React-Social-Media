@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/api", async (req, res) => {
-    console.log(`Request at ${new Date().toLocaleString()}`);
+    console.log(`Display all users request at ${new Date().toLocaleString()}`);
 
     const users = await getAllUsers();
     res.json({ users });

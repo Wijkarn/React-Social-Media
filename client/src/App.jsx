@@ -2,6 +2,7 @@ import "./css/App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Footer from "./components/Footer/Footer";
 
 export default function HomePage() {
 
@@ -42,7 +43,7 @@ export default function HomePage() {
     <>
       <Navbar username={username} />
       <Outlet context={[username, setUsername]} />
-      <p>{username ? username : "Yeet"}</p>
+      <Footer />
     </>
   );
 }

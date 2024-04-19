@@ -4,11 +4,14 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #nav-user-icon {
     max-width: 45px;
     aspect-ratio: 1/1;
+    border-radius: 50%;
+    transition: all .5s;
 }
 
 .nav-buttons {
@@ -19,11 +22,21 @@
     border-radius: .5vw;
     text-decoration: none;
     font-size: large;
-    color: rgba(255, 255, 255, 0.8);
     margin: 5px;
-}
-
-.nav-buttons:hover{
-    background-color: darkgray;
     color: black;
+    transition: all 0.5s;
+
+    &:hover,
+    &:focus {
+        transition: all 0.5s;
+        background-color: #171717;
+        box-shadow: 0 0 3px 3px #171717;
+        color: white;
+
+        #nav-user-icon {
+            background-color: white;
+            box-shadow: 0 0 6px 6px white;
+            transition: all .5s;
+        }
+    }
 }

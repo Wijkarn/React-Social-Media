@@ -11,7 +11,7 @@ export default function LogOutForm({ username, setUsername }) {
     return (
         <div id="form-div">
             <h2>Are you sure you want to logout {username}?</h2>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout} id="log-in-out-btn">Logout</button>
         </div>
     );
 }

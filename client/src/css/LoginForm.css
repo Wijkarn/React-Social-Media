@@ -4,10 +4,33 @@
 }
 
 #login-form>* {
-    border: black 1px solid;
     padding: 1%;
+    margin: 1%;
+    font-size: 1.3em;
 }
 
 #form-div {
     text-align: center;
+    background-color: var(--twitch-purple);
+    padding: 1.5em;
+    border-radius: 2em;
+    box-shadow: 0 0 6px 3px var(--twitch-purple);
+}
+
+#log-in-out-btn {
+    padding: 2%;
+    border-radius: 10px;
+    background-color: #d3d3d3;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #171717;
+    transition: all .5s;
+
+    &:hover,
+    &:focus {
+        transition: all .5s;
+        background-color: #171717;
+        box-shadow: 0 0 6px 3px #171717;
+        color: white;
+    }
 }
