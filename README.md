@@ -7,10 +7,17 @@ Run these commands in terminal
 cd server
 npm run dev
 ```
+
 Start a new terminal in project
 ```bash
 cd client
 npm start
+```
+
+Fill database
+```bash
+cd server
+npm run populate
 ```
 
 ## To stop double render
