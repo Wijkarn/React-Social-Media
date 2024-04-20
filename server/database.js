@@ -69,7 +69,6 @@ async function getAllUsers() {
 async function registerUser(userData) {
     try {
         const userExists = await getUser(Object.keys(userData)[0]);
-
         if (!userExists) {
             const fbUrl = `${getUrl()}users.json`;
             const options = {
@@ -82,6 +81,7 @@ async function registerUser(userData) {
 
             const registered = await fetch(fbUrl, options);
             const data = await registered.json();
+            
             return data ? true : false;
         }
         return null;

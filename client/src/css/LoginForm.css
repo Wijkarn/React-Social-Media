@@ -1,9 +1,11 @@
-#login-form {
+#login-form,
+#register-form {
     display: flex;
     flex-direction: column;
 }
 
-#login-form>* {
+#login-form>*,
+#register-form>* {
     padding: 1%;
     margin: 1%;
     font-size: 1.3em;
@@ -33,4 +35,8 @@
         box-shadow: 0 0 6px 3px #171717;
         color: white;
     }
+}
+
+#login-register-btn {
+    color: black;
 }

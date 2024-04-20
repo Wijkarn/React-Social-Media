@@ -1,4 +1,3 @@
-import "../css/App.css";
 import { useOutletContext } from "react-router-dom";
 
 export default function HomePage() {

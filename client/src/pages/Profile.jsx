@@ -1,6 +1,4 @@
-import React from "react";
 import DisplayUsers from "../components/DisplayUsers";
-import "../css/App.css";
 import { useParams } from "react-router-dom";
 //import { useOutletContext } from "react-router-dom";
 

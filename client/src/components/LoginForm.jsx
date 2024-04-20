@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "../css/LoginForm.css";
 
 export default function loginForm({ setUsername }) {
@@ -40,10 +41,11 @@ export default function loginForm({ setUsername }) {
             <h1>Login</h1>
             <form onSubmit={handleLogin} id="login-form">
                 <label htmlFor="form-username">Username:</label>
-                <input type="text" name="username" id="form-username" required autoComplete="username"/>
+                <input type="text" name="username" id="form-username" required autoComplete="username" />
                 <label htmlFor="form-password">Password:</label>
-                <input type="password" name="password" id="form-password" required autoComplete="off"/>
+                <input type="password" name="password" id="form-password" required autoComplete="off" />
                 <button type="submit" id="log-in-out-btn">Login</button>
+                <NavLink id="login-register-btn" to="/register" >Don't have an account? Click here to register!</NavLink>
             </form>
         </div>
     );
