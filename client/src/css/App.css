@@ -45,6 +45,14 @@ li>a[aria-current] {
   justify-content: center;
 }
 
-h1{
+h1 {
   color: white;
+}
+
+#form-div {
+  text-align: center;
+  background-color: var(--twitch-purple);
+  padding: 1.5em;
+  border-radius: 2em;
+  box-shadow: 0 0 6px 3px var(--twitch-purple);
 }

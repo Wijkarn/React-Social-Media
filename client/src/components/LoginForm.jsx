@@ -6,33 +6,38 @@ export default function loginForm({ setUsername }) {
     async function handleLogin(e) {
         e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const username = formData.get("username");
-        const password = formData.get("password");
+        try {
+            const formData = new FormData(e.target);
+            const username = formData.get("username");
+            const password = formData.get("password");
 
-        const cred = {
-            username,
-            password
+            const cred = {
+                username,
+                password
+            }
+
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(cred)
+            });
+
+            const data = await response.json();
+
+            if (data.loggedIn) {
+                localStorage.setItem("uuid", data.loggedIn);
+                localStorage.setItem("username", username);
+                setUsername(username);
+                window.location.replace("/home");
+            }
+            else {
+                localStorage.clear();
+            }
         }
-
-        const response = await fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(cred)
-        });
-
-        const data = await response.json();
-
-        if (data.loggedIn) {
-            localStorage.setItem("uuid", data.loggedIn);
-            localStorage.setItem("username", username);
-            setUsername(username);
-            window.location.replace("/home");
-        }
-        else {
-            localStorage.clear();
+        catch (e) {
+            console.error(e);
         }
     }
 

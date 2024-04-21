@@ -7,17 +7,20 @@ export default function DisplayUsers() {
     useEffect(() => {
         async function getUsers() {
             try {
-                await fetch("/api")
+                await fetch("/test")
                     .then(response => response.json())
                     .then(data => {
                         if (data) {
-                            setUsers(data.users);
+                            setUsers(data);
+                        }
+                        else {
+                            alert("Error getting users!");
                         }
                     });
             }
             catch (e) {
                 console.error(e);
-                alert("Error getting users!");
+                alert("Error getting users! " + e);
             }
         }
         getUsers();

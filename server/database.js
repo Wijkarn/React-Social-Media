@@ -81,8 +81,8 @@ async function registerUser(userData) {
 
             const registered = await fetch(fbUrl, options);
             const data = await registered.json();
-            
-            return data ? true : false;
+
+            return data ? true : null;
         }
         return null;
     }
@@ -93,9 +93,36 @@ async function registerUser(userData) {
 
 async function getUser(username) {
     const fbUrl = `${getUrl()}users/${username}.json`;
-    const response = await fetch(fbUrl);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(fbUrl);
+        const data = await response.json();
+        return data;
+    }
+    catch (e) {
+        console.error(e);
+    }
+}
+
+async function uploadPost(username, userData) {
+    const fbUrl = `${getUrl()}posts/${username}.json`;
+
+    try {
+        const response = await fetch(fbUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(userData)
+        });
+
+        const data = await response.json();
+
+        return data ? true : null;
+    }
+    catch (e) {
+        console.error(e);
+        return null;
+    }
 }
 
 module.exports = {
@@ -103,5 +130,6 @@ module.exports = {
     setUuid,
     getUuid,
     getAllUsers,
-    registerUser
+    registerUser,
+    uploadPost
 }

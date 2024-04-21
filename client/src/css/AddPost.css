@@ -1,17 +1,15 @@
-#login-form,
-#register-form {
+#form-upload-post {
     display: flex;
     flex-direction: column;
 }
 
-#login-form>*,
-#register-form>* {
+#form-upload-post>* {
     padding: 1%;
     margin: 1%;
     font-size: 1.3em;
 }
 
-#log-in-out-btn {
+#upload-post-btn {
     padding: 2%;
     border-radius: 10px;
     background-color: #d3d3d3;
@@ -20,15 +18,10 @@
     color: #171717;
     transition: all .5s;
 
-    &:hover,
-    &:focus {
+    &:hover {
         transition: all .5s;
         background-color: #171717;
         box-shadow: 0 0 6px 3px #171717;
         color: white;
     }
-}
-
-#login-register-btn {
-    color: black;
 }

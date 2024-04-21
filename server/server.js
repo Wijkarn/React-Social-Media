@@ -1,16 +1,22 @@
 const express = require("express");
 const app = express();
 const PORT = 5000;
-const { login, setUuid, getUuid, getAllUsers, registerUser } = require("./database.js");
+const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost } = require("./database.js");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get("/api", async (req, res) => {
+app.get("/test", async (req, res) => {
     console.log(`Display all users request at ${new Date().toLocaleString()}`);
 
     const users = await getAllUsers();
-    res.json({ users });
+    if (users) {
+        for (const user in users) {
+            delete users[user].password;
+            delete users[user].uuid;
+        }
+    }
+    res.json(users);
 });
 
 app.listen(PORT, () => {
@@ -55,7 +61,7 @@ app.post("/browser-session", async (req, res) => {
 
 app.post("/register-user", async (req, res) => {
     console.log(`Register attempt at ${new Date().toLocaleString()}`);
-    
+
     try {
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
@@ -80,5 +86,25 @@ app.post("/register-user", async (req, res) => {
     catch (e) {
         res.json({ registered: null });
         console.error(e);
+    }
+});
+
+app.post("/upload-post", async (req, res) => {
+    try {
+        const username = req.body.username;
+        const title = req.body.title;
+        const content = req.body.content;
+
+        const userData = {
+            title,
+            content
+        }
+
+        const success = await uploadPost(username, userData);
+        res.json({ success });
+    }
+    catch (e) {
+        console.error(e);
+        res.json({ success: null });
     }
 });

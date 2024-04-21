@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import Login from './pages/LogInOutPage';
 import HomePage from './pages/Homepage';
 import RegisterPage from './pages/RegisterPage';
+import AddPostPage from './pages/AddPostPage';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterPage />
+      },
+      {
+        path: "/upload",
+        element: <AddPostPage />
       }
     ]
   }

@@ -1,13 +1,15 @@
 import "../../css/Navbar.css";
 import NavUserButton from "./NavUserButton";
 import NavLoginBtn from "./NavLoginButton";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import NavAddPostButton from "./NavAddPostButton";
 
 export default function Navbar({ username }) {
 
     return (
         <nav id="top-nav">
-            <Link to="/home" className="nav-buttons">HomePage</Link>
+            <NavLink to="/home" className="nav-buttons">HomePage</NavLink>
+            <NavAddPostButton />
             <NavUserButton username={username} />
             <NavLoginBtn username={username} />
         </nav>

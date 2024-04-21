@@ -24,4 +24,5 @@ npm run populate
 
 Disable (comment out) React Strict Mode in index.js
 
-[Falcon Image](https://www.flaticon.com/free-icon/millennium-falcon_86572)
+[Falcon Icon](https://www.flaticon.com/free-icon/millennium-falcon_86572)
+[Add Icon](https://www.flaticon.com/free-icon/more_3161837)

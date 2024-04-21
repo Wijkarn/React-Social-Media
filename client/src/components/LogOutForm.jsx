@@ -2,7 +2,6 @@ export default function LogOutForm({ username, setUsername }) {
 
     function handleLogout(e) {
         e.preventDefault();
-        console.log("Logout");
 
         localStorage.clear();
         setUsername(null);
