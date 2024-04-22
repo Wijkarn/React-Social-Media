@@ -1,0 +1,11 @@
+#not-found-page-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#not-found-page-div>* {
+    color: white;
+}

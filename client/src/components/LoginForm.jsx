@@ -26,8 +26,8 @@ export default function loginForm({ setUsername }) {
 
             const data = await response.json();
 
-            if (data.loggedIn) {
-                localStorage.setItem("uuid", data.loggedIn);
+            if (data) {
+                localStorage.setItem("uuid", data);
                 localStorage.setItem("username", username);
                 setUsername(username);
                 window.location.replace("/home");

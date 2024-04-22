@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
       const data = await response.json();
 
-      data.registered ? window.location.replace("/login") : failedToCreateUser("Error creating user (user most likely already exist)");
+      data ? window.location.replace("/login") : failedToCreateUser("Error creating user (user most likely already exist)");
     }
     catch (e) {
       console.error(e);

@@ -125,11 +125,41 @@ async function uploadPost(username, userData) {
     }
 }
 
+async function getAllPostsFromUser(username) {
+    const fbUrl = `${getUrl()}posts/${username}.json`;
+
+    try {
+        const response = await fetch(fbUrl);
+        const data = await response.json();
+        return data;
+    }
+    catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
+async function getAPost(username, postId) {
+    const fbUrl = `${getUrl()}posts/${username}/${postId}.json`;
+
+    try {
+        const response = await fetch(fbUrl);
+        const data = await response.json();
+        return data;
+    }
+    catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
 module.exports = {
     login,
     setUuid,
     getUuid,
     getAllUsers,
     registerUser,
-    uploadPost
+    uploadPost,
+    getAllPostsFromUser,
+    getAPost
 }
