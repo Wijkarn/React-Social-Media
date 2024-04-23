@@ -25,6 +25,8 @@ body {
 
 li {
   color: white;
+  width: fit-content;
+  margin: auto;
 
   a {
     text-decoration: none;
@@ -34,10 +36,6 @@ li {
       text-decoration: underline;
     }
   }
-}
-
-li>a[aria-current] {
-  color: red;
 }
 
 h1 {

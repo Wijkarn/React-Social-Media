@@ -9,6 +9,7 @@ import Login from './pages/LogInOutPage';
 import HomePage from './pages/Homepage';
 import RegisterPage from './pages/RegisterPage';
 import AddPostPage from './pages/AddPostPage';
+import DisplayPost from './components/DisplayPost';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,13 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/profile/:username",
-            element: <Profile />
+            element: <Profile />,
+            children: [
+              {
+                path: "/profile/:username/post/:postId",
+                element: <DisplayPost />
+              }
+            ]
           }
         ]
       },

@@ -30,7 +30,7 @@ export default function DisplayUsers() {
         <ol>
             {users ? (
                 Object.keys(users).map(username => (
-                    <li key={username}><NavLink to={username}>{users[username].firstname} {users[username].lastname}</NavLink></li>
+                    <li key={username}><NavLink to={`/profile/${username}`}>{users[username].firstname} {users[username].lastname}</NavLink></li>
                 ))
             ) : (
                 <li>Loading...</li>
