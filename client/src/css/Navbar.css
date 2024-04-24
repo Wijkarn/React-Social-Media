@@ -19,6 +19,10 @@
     border-radius: 0;
 }
 
+#nav-username {
+    color: black;
+}
+
 .nav-buttons {
     display: flex;
     flex-direction: column;
@@ -37,10 +41,14 @@
         box-shadow: 0 0 3px 3px #171717;
         color: white;
 
-        #nav-user-icon {
-            background-color: white;
-            box-shadow: 0 0 6px 6px white;
+        .nav-icons {
             transition: all .5s;
+            filter: invert(100%);
+        }
+
+        #nav-username {
+            transition: all .5s;
+            color: white;
         }
     }
 }

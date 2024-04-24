@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
+const logger = require('morgan');
 const PORT = 5000;
 const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost } = require("./database.js");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(logger('dev'));
 
 app.get("/test", async (req, res) => {
-    console.log(`Display all users request at ${new Date().toLocaleString()}`);
-
     const users = await getAllUsers();
     if (users) {
         for (const user in users) {
@@ -24,8 +24,6 @@ app.listen(PORT, () => {
 });
 
 app.post("/login", async (req, res) => {
-    console.log(`Login attempt at ${new Date().toLocaleString()}`);
-
     try {
         const username = req.body.username;
         const password = req.body.password;
@@ -43,8 +41,6 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/browser-session", async (req, res) => {
-    console.log(`Browser Session ${new Date().toLocaleString()}`);
-
     try {
         const username = req.body.username;
         const uuid = req.body.uuid;
@@ -60,8 +56,6 @@ app.post("/browser-session", async (req, res) => {
 });
 
 app.post("/register-user", async (req, res) => {
-    console.log(`Register attempt at ${new Date().toLocaleString()}`);
-
     try {
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
@@ -90,7 +84,6 @@ app.post("/register-user", async (req, res) => {
 });
 
 app.post("/upload-post", async (req, res) => {
-    console.log(`Upload attempt at ${new Date().toLocaleString()}`);
     try {
         const username = req.body.username;
         const title = req.body.title;
@@ -99,7 +92,7 @@ app.post("/upload-post", async (req, res) => {
         const userData = {
             title,
             content,
-            date: new Date()
+            date: createDate()
         }
 
         const success = await uploadPost(username, userData);
@@ -112,7 +105,6 @@ app.post("/upload-post", async (req, res) => {
 });
 
 app.post("/get-posts-from-user", async (req, res) => {
-    console.log(`Get all posts from user attempt at ${new Date().toLocaleString()}`);
     try {
         const username = req.body.username;
         const posts = await getAllPostsFromUser(username);
@@ -125,7 +117,6 @@ app.post("/get-posts-from-user", async (req, res) => {
 });
 
 app.post("/get-a-post", async (req, res) => {
-    console.log(`Get a post from user attempt at ${new Date().toLocaleString()}`);
     try {
         const username = req.body.username;
         const postId = req.body.postId;
@@ -137,3 +128,14 @@ app.post("/get-a-post", async (req, res) => {
         res.json(null);
     }
 });
+
+function createDate() {
+    const date = new Date();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+
+    return `${hours}:${minutes} ${day}-${month}-${year}`;
+}

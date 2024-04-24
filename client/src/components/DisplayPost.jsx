@@ -11,17 +11,6 @@ export default function DisplayPost() {
     const [post, setPost] = useState(loadingPost);
     const params = useParams();
 
-    function createDate(stringDate) {
-        const date = new Date(stringDate);
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear().toString();
-
-        return `${hours}:${minutes} ${day}-${month}-${year}`;
-    }
-
     useEffect(() => {
         async function getPost() {
             try {
@@ -34,8 +23,6 @@ export default function DisplayPost() {
                 });
 
                 const data = await response.json();
-
-                data.date = createDate(data.date);
 
                 setPost(data);
             }
