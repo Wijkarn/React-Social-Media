@@ -32,8 +32,9 @@ export default function AddPostPage() {
                 });
 
                 const data = await response.json();
+                
                 if (data) {
-                    alert("Post added successfully");
+                    window.location.replace(`/profile/${username}/post/${data.name}`);
                 }
                 else {
                     alert("Error uploading post");

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "populate": "node populate-db",
+    "create-users": "node database-fillers/create-users-db",
+    "create-posts": "node database-fillers/create-posts-db",
     "dev": "nodemon server"
   },
   "keywords": [],

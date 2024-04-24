@@ -117,7 +117,7 @@ async function uploadPost(username, userData) {
 
         const data = await response.json();
 
-        return data ? true : null;
+        return data;
     }
     catch (e) {
         console.error(e);

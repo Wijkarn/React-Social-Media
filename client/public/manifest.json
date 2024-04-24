@@ -3,7 +3,7 @@
   "name": "Falcon",
   "icons": [
     {
-      "src": "assets/falcon512.png",
+      "src": "assets/falcon512.svg",
       "type": "image/png",
       "sizes": "512x512"
     }

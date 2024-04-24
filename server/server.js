@@ -69,7 +69,8 @@ app.post("/register-user", async (req, res) => {
                 lastname,
                 password,
                 email,
-                uuid: null
+                uuid: null,
+                created: createDate()
             }
         }
 
