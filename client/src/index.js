@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFoundPage from './pages/NotFoundPage';
 import Login from './pages/LogInOutPage';
-import HomePage from './pages/Homepage';
+import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import AddPostPage from './pages/AddPostPage';
 import DisplayPost from './components/DisplayPost';
