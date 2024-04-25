@@ -11,13 +11,12 @@
 }
 
 body {
-  min-height: 100vh;
   background-color: #1b1b1b;
   font-family: "Inter", "Roobert", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #root {
-  height: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;

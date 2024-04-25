@@ -2,6 +2,11 @@
 
 ## To start
 
+Don't forget to do this inside both client and server
+```bash
+npm i
+```
+
 Run these commands in terminal
 ```bash
 cd server
@@ -17,7 +22,8 @@ npm start
 Fill database
 ```bash
 cd server
-npm run populate
+npm run create-users
+npm run create-posts
 ```
 
 ## To stop double render

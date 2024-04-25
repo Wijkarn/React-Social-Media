@@ -27,8 +27,7 @@ async function createPost(username) {
         }
 
         const post = await uploadPost(username, postObj);
-        console.log(username);
-        console.log(post);
+        console.log(username, post);
     }
     catch (e) {
         console.log(e);
@@ -66,6 +65,5 @@ function getRandomDate() {
 
     return `${hours}:${minutes} ${day}-${month}-${year}`;
 }
-
 
 start();

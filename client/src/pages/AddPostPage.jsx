@@ -4,46 +4,40 @@ import { useOutletContext } from "react-router-dom";
 export default function AddPostPage() {
     const [username] = useOutletContext();
 
-    if (!username) {
-        window.location.replace("/login");
-    }
-
     async function handleNewPost(e) {
         e.preventDefault();
 
-        if (username) {
-            try {
-                const formData = new FormData(e.target);
-                const title = formData.get("title");
-                const content = formData.get("content");
+        try {
+            const formData = new FormData(e.target);
+            const title = formData.get("title");
+            const content = formData.get("content");
 
-                const uploadContent = {
-                    username,
-                    title,
-                    content
-                }
-
-                const response = await fetch("/upload-post", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(uploadContent)
-                });
-
-                const data = await response.json();
-                
-                if (data) {
-                    window.location.replace(`/profile/${username}/post/${data.name}`);
-                }
-                else {
-                    alert("Error uploading post");
-                }
+            const uploadContent = {
+                username,
+                title,
+                content
             }
-            catch (e) {
-                alert("Error uploading post " + e);
-                console.error(e);
+
+            const response = await fetch("/upload-post", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(uploadContent)
+            });
+
+            const data = await response.json();
+
+            if (data) {
+                window.location.replace(`/profile/${username}/post/${data.name}`);
             }
+            else {
+                alert("Error uploading post");
+            }
+        }
+        catch (e) {
+            alert("Error uploading post " + e);
+            console.error(e);
         }
     }
 

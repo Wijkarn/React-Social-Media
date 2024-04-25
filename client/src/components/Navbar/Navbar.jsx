@@ -9,7 +9,7 @@ export default function Navbar({ username }) {
     return (
         <nav id="top-nav">
             <NavLink to="/home" className="nav-buttons">HomePage</NavLink>
-            <NavAddPostButton />
+            <NavAddPostButton username={username} />
             <NavUserButton username={username} />
             <NavLoginBtn username={username} />
         </nav>
