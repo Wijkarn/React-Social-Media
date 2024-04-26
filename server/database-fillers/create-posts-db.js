@@ -47,20 +47,12 @@ async function getContent() {
 }
 
 function getRandomDate() {
-    // Get timestamps for the first day of 2024 and today's date
-    const startTimestamp = new Date('2024-01-01').getTime();
-    const endTimestamp = new Date().getTime();
+    const date = new Date();
 
-    // Generate a random timestamp between startTimestamp and endTimestamp
-    const randomTimestamp = Math.random() * (endTimestamp - startTimestamp) + startTimestamp;
-
-    // Convert the random timestamp back to a Date object
-    const date = new Date(randomTimestamp);
-
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear().toString();
 
     return `${hours}:${minutes} ${day}-${month}-${year}`;

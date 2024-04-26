@@ -81,6 +81,7 @@ async function registerUser(userData) {
 
             const registered = await fetch(fbUrl, options);
             const data = await registered.json();
+            console.log(data);
 
             return data ? true : null;
         }
