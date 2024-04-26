@@ -31,7 +31,7 @@ async function getData() {
     const lastname = user.name.last;
     const password = user.login.password;
     const email = user.email;
-    const created_at = getRandomDate();
+    const created = getRandomDate();
 
     const obj = {
         [username]: {
@@ -39,7 +39,7 @@ async function getData() {
             lastname,
             password,
             email,
-            created_at
+            created
         }
     }
 
