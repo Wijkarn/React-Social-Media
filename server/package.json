@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
+    "dev": "nodemon server",
     "create-users": "node database-fillers/create-users-db",
-    "create-posts": "node database-fillers/create-posts-db",
-    "dev": "nodemon server"
+    "create-posts": "node database-fillers/create-posts-db"
   },
   "keywords": [],
   "author": "Wijkarn",

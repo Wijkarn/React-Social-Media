@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function DisplayPost() {
+export default function DisplayPost({ loggedInUser }) {
     const loadingPost = {
         title: "Loading Post!",
         content: "",
@@ -10,6 +10,8 @@ export default function DisplayPost() {
 
     const [post, setPost] = useState(loadingPost);
     const params = useParams();
+    const username = params.username;
+    const postId = params.postId;
 
     useEffect(() => {
         async function getPost() {
@@ -19,7 +21,7 @@ export default function DisplayPost() {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ username: params.username, postId: params.postId })
+                    body: JSON.stringify({ username, postId })
                 });
 
                 const data = await response.json();
@@ -32,21 +34,32 @@ export default function DisplayPost() {
             }
         }
         getPost();
-    }, [params.username, params.postId]);
+    }, [username, postId]);
+
+    function deletePost(e) {
+        e.preventDefault();
+
+        fetch("/delete-post", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, postId })
+        });
+    }
 
     return (
-        <ol>
+        <div id="posts-div" className="post">
             {post ? (
-                <div>
+                <>
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
                     <p>{post.date}</p>
-                </div>
+                    {loggedInUser === username ? <button onClick={deletePost} id="delete-post-btn">Delete Post!</button> : ""}
+                </>
             ) : (
-                <div>
-                    <h2>Post doesn't exist!</h2>
-                </div>
+                <h2>Post doesn't exist!</h2>
             )}
-        </ol>
+        </div>
     );
 }

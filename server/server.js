@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const logger = require('morgan');
 const PORT = 5000;
-const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost } = require("./database.js");
+const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost, deletePost } = require("./database.js");
+const { createDate } = require("./random-functions.js");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -130,14 +131,17 @@ app.post("/get-a-post", async (req, res) => {
     }
 });
 
-function createDate() {
-    const date = new Date();
+app.delete("/delete-post", async (req, res) => {
+    try {
+        const username = req.body.username;
+        const postId = req.body.postId;
 
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear().toString();
+        const isDeleted = await deletePost(username, postId);
 
-    return `${hours}:${minutes} ${day}-${month}-${year}`;
-}
+        res.json(isDeleted);
+    }
+    catch (e) {
+        console.error(e);
+        res.json(null);
+    }
+});

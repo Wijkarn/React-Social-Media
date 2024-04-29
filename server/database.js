@@ -58,6 +58,7 @@ async function getAllUsers() {
     try {
         const response = await fetch(`${getUrl()}users.json`);
         const users = await response.json();
+
         return users;
     }
     catch (e) {
@@ -71,43 +72,43 @@ async function registerUser(userData) {
         const userExists = await getUser(Object.keys(userData)[0]);
         if (!userExists) {
             const fbUrl = `${getUrl()}users.json`;
-            const options = {
+
+            const registered = await fetch(fbUrl, {
                 method: "PATCH",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
                 },
                 body: JSON.stringify(userData)
-            }
+            });
 
-            const registered = await fetch(fbUrl, options);
             const data = await registered.json();
-            console.log(data);
 
             return data ? true : null;
         }
-        return null;
     }
     catch (e) {
         console.error(e);
     }
+    return null;
 }
 
 async function getUser(username) {
-    const fbUrl = `${getUrl()}users/${username}.json`;
     try {
+        const fbUrl = `${getUrl()}users/${username}.json`;
         const response = await fetch(fbUrl);
         const data = await response.json();
+
         return data;
     }
     catch (e) {
         console.error(e);
     }
+    return null;
 }
 
 async function uploadPost(username, userData) {
-    const fbUrl = `${getUrl()}posts/${username}.json`;
-
     try {
+        const fbUrl = `${getUrl()}posts/${username}.json`;
         const response = await fetch(fbUrl, {
             method: "POST",
             headers: {
@@ -122,36 +123,56 @@ async function uploadPost(username, userData) {
     }
     catch (e) {
         console.error(e);
-        return null;
     }
+    return null;
 }
 
 async function getAllPostsFromUser(username) {
-    const fbUrl = `${getUrl()}posts/${username}.json`;
-
     try {
+        const fbUrl = `${getUrl()}posts/${username}.json`;
         const response = await fetch(fbUrl);
         const data = await response.json();
+
         return data;
     }
     catch (e) {
         console.error(e);
-        return null;
     }
+    return null;
 }
 
 async function getAPost(username, postId) {
-    const fbUrl = `${getUrl()}posts/${username}/${postId}.json`;
-
     try {
+        const fbUrl = `${getUrl()}posts/${username}/${postId}.json`;
         const response = await fetch(fbUrl);
         const data = await response.json();
+
         return data;
     }
     catch (e) {
         console.error(e);
-        return null;
     }
+    return null;
+}
+
+async function deletePost(username, postId) {
+    try {
+        const fbUrl = `${getUrl()}posts/${username}/${postId}.json`;
+        const response = await fetch(fbUrl, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            }
+        });
+
+        const data = await response.json();
+
+        return data;
+    }
+    catch (e) {
+        console.error(e);
+    }
+    return null;
 }
 
 module.exports = {
@@ -162,5 +183,6 @@ module.exports = {
     registerUser,
     uploadPost,
     getAllPostsFromUser,
-    getAPost
+    getAPost,
+    deletePost
 }

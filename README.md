@@ -1,5 +1,9 @@
 # Falcon: My React social media app.
 
+## Requirements
+
+Node.js, Internet connection
+
 ## To start
 
 Don't forget to do this inside both client and server

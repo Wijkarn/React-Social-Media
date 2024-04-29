@@ -1,4 +1,6 @@
 const { registerUser } = require("../database.js");
+const { createDate, isASCII } = require("../random-functions.js");
+
 const fbiWantedUrl = "https://api.fbi.gov/wanted/v1/list";
 const randomUserUrl = "https://randomuser.me/api/";
 
@@ -31,7 +33,7 @@ async function getData() {
     const lastname = user.name.last;
     const password = user.login.password;
     const email = user.email;
-    const created = getRandomDate();
+    const created = createDate();
 
     const obj = {
         [username]: {
@@ -44,25 +46,6 @@ async function getData() {
     }
 
     return isASCII(firstname) && isASCII(lastname) ? obj : null;
-}
-
-function isASCII(str) {
-    // Create a regular expression to match non-ASCII characters
-    const asciiRegex = /^[\x00-\x7F]*$/;
-    // Test if the string matches the regular expression
-    return asciiRegex.test(str);
-}
-
-function getRandomDate() {
-    const date = new Date();
-
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear().toString();
-
-    return `${hours}:${minutes} ${day}-${month}-${year}`;
 }
 
 start();

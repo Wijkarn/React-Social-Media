@@ -29,11 +29,11 @@ export default function DisplayPosts({ displayUser }) {
     }, [displayUser]);
 
     return (
-        <ol>
+        <ol id="posts-div">
             {posts ? (
                 Object.keys(posts).map(postId => (
-                    <div key={postId}>
-                        <h2><NavLink to={`/profile/${displayUser}/post/${postId}`}>{posts[postId].title}</NavLink></h2>
+                    <div key={postId} className="post">
+                        <h2 className=""><NavLink to={`/profile/${displayUser}/post/${postId}`}> {posts[postId].title}</NavLink></h2>
                         <p>{posts[postId].content}</p>
                         <p>{posts[postId].date}</p>
                         <p>Post by: {displayUser}</p>

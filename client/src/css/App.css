@@ -39,6 +39,8 @@ li {
 
 h1 {
   color: white;
+  margin: auto;
+  width: fit-content;
 }
 
 #form-div {
@@ -54,4 +56,24 @@ textarea {
   background-color: inherit;
   border: 2px solid white;
   border-radius: 10px;
+}
+
+button {
+  color: black;
+}
+
+/* #posts-div {
+  max-width: 50%;
+  margin: auto;
+} */
+
+.post {
+  margin: 10px;
+  background-color: var(--twitch-purple);
+  padding: 1%;
+  border-radius: 10px
+}
+
+#delete-post-btn {
+  margin-right: 0;
 }
