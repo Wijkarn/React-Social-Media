@@ -175,6 +175,53 @@ async function deletePost(username, postId) {
     return null;
 }
 
+async function postComment(postId, postUser, commentUser, commentContent, date) {
+    try {
+        const fbUrl = `${getUrl()}posts/${postUser}/${postId}/comments/.json`;
+
+        const comment = {
+            user: commentUser,
+            content: commentContent,
+            date
+        }
+
+        const response = await fetch(fbUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(comment)
+        });
+
+        const data = await response.json();
+
+        return data;
+    }
+    catch (e) {
+        console.log(e);
+    }
+    return null;
+}
+
+async function deleteComment(postUser, postId, commentId) {
+    try {
+        const fbUrl = `${getUrl()}posts/${postUser}/${postId}/comments/${commentId}.json`;
+        console.log(fbUrl);
+        const response = await fetch(fbUrl, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            }
+        });
+        const data = await response.json();
+        return data;
+    }
+    catch (e) {
+        console.log(e);
+    }
+    return null
+}
+
 module.exports = {
     login,
     setUuid,
@@ -184,5 +231,7 @@ module.exports = {
     uploadPost,
     getAllPostsFromUser,
     getAPost,
-    deletePost
+    deletePost,
+    postComment,
+    deleteComment
 }

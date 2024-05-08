@@ -12,7 +12,7 @@ export default function Profile() {
       {params.postId ? (
         <DisplayPost loggedInUser={username} />
       ) : (
-        <DisplayPosts displayUser={params.username} />
+        <DisplayPosts displayUser={params.username} username={username} />
       )}
     </div>
   );

@@ -25,7 +25,7 @@ async function createPost(username) {
         const postObj = {
             title,
             content,
-            date: getRandomDate()
+            date: createDate()
         }
 
         const post = await uploadPost(username, postObj);

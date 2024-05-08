@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import AddComment from "./AddComment";
+import DisplayComments from "./DisplayComments";
 
 export default function DisplayPost({ loggedInUser }) {
     const loadingPost = {
@@ -56,6 +58,10 @@ export default function DisplayPost({ loggedInUser }) {
                     <p>{post.content}</p>
                     <p>{post.date}</p>
                     {loggedInUser === username ? <button onClick={deletePost} id="delete-post-btn">Delete Post!</button> : ""}
+
+                    <AddComment username={username} postId={postId} postUploader={username} />
+
+                    <DisplayComments postId={postId} postUser={username} username={loggedInUser} comments={post.comments}/>
                 </>
             ) : (
                 <h2>Post doesn't exist!</h2>

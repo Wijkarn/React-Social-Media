@@ -68,12 +68,19 @@ button {
 } */
 
 .post {
-  margin: 10px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: var(--twitch-purple);
   padding: 1%;
-  border-radius: 10px
+  border-radius: 10px;
+  max-width: 80%;
 }
 
 #delete-post-btn {
   margin-right: 0;
+}
+
+.comment-date {
+  text-decoration: underline;
 }

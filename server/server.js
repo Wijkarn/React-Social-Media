@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const logger = require('morgan');
 const PORT = 5000;
-const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost, deletePost } = require("./database.js");
+const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost, deletePost, postComment, deleteComment } = require("./database.js");
 const { createDate } = require("./random-functions.js");
 
 app.use(express.urlencoded({ extended: false }));
@@ -145,3 +145,35 @@ app.delete("/delete-post", async (req, res) => {
         res.json(null);
     }
 });
+
+app.post("/upload-comment", async (req, res) => {
+    try {
+        const postId = req.body.postId;
+        const postUser = req.body.postUser;
+        const commentUser = req.body.commentUser;
+        const commentContent = req.body.commentContent;
+
+        const comment = await postComment(postId, postUser, commentUser, commentContent, createDate());
+
+        res.json(comment);
+    }
+    catch (e) {
+        console.log(e);
+        res.json(null);
+    }
+});
+
+app.delete("/delete-comment", async (req, res) => {
+    try {
+        const postId = req.body.postId;
+        const postUser = req.body.postUser;
+        const commentId = req.body.commentId;
+
+        const success = await deleteComment(postUser, postId, commentId);
+        res.json(success);
+    }
+    catch (e) {
+        console.log(e);
+        res.json(null);
+    }
+}); 

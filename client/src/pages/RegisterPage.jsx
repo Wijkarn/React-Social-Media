@@ -54,15 +54,15 @@ export default function RegisterPage() {
     <div id="form-div">
       <form onSubmit={handleRegister} id="register-form">
         <label htmlFor="form-firstname">Firstname:</label>
-        <input type="text" name="firstname" id="form-firstname" required />
+        <input type="text" name="firstname" id="form-firstname" required autoComplete="first name"/>
         <label htmlFor="form-lastname">Lastname:</label>
-        <input type="text" name="lastname" id="form-lastname" required />
+        <input type="text" name="lastname" id="form-lastname" required autoComplete="last name"/>
         <label htmlFor="form-username">Username:</label>
-        <input type="text" name="username" id="form-username" required />
+        <input type="text" name="username" id="form-username" required autoComplete="off"/>
         <label htmlFor="form-email">Email:</label>
-        <input type="email" name="email" id="form-email" required />
+        <input type="email" name="email" id="form-email" required autoComplete="email"/>
         <label htmlFor="form-password">Password:</label>
-        <input type="password" name="password" id="form-password" required />
+        <input type="password" name="password" id="form-password" required autoComplete="off"/>
         <button type="submit" id="log-in-out-btn">Register</button>
       </form>
     </div>

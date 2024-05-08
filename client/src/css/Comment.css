@@ -1,0 +1,9 @@
+.comment-div {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.remove-comment-btn{
+    width: fit-content;
+}
