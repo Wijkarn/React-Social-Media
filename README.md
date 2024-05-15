@@ -1,39 +1,43 @@
-# Falcon: My React social media app.
+# Falcon: My React/Node.js social media app.
 
 ## Requirements
 
-Node.js, Internet connection
+[Node.js](https://nodejs.org/en/download), Internet connection, ~400mb
 
 ## To start
 
-Don't forget to do this inside both client and server
+Don't forget to install node modules inside both client and server
 ```bash
 npm i
 ```
 
-Run these commands in terminal
+Start server in terminal
 ```bash
 cd server
 npm run dev
 ```
 
-Start a new terminal in project
+Open a new terminal in project and start the client
 ```bash
 cd client
 npm start
 ```
 
-Fill database
+To fill database
 ```bash
 cd server
 npm run create-users
 npm run create-posts
 ```
 
-## To stop double render
+create-users uses the [random users api](https://randomuser.me/) to get the user info.
 
-Disable (comment out) React Strict Mode in index.js
+create-posts uses the [bored api](https://www.boredapi.com/) to get the titles and [catfact api](https://catfact.ninja/) to get the post content.
 
 [Falcon Icon](https://www.flaticon.com/free-icon/millennium-falcon_86572)
 
 [Add Icon](https://www.flaticon.com/free-icon/more_3161837)
+
+## To stop double render
+
+Disable (comment out) React Strict Mode in index.js

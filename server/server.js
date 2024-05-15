@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
-const logger = require('morgan');
+const logger = require("morgan");
 const PORT = 5000;
 const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost, deletePost, postComment, deleteComment } = require("./database.js");
 const { createDate } = require("./random-functions.js");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(logger('dev'));
+app.use(logger("dev"));
 
 app.get("/test", async (req, res) => {
     const users = await getAllUsers();
