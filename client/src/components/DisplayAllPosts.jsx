@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import AddComment from "./AddComment";
-import DisplayComments from "./DisplayComments";
 
 export default function DisplayPosts({ displayUser, username }) {
     const [posts, setPosts] = useState(null);
@@ -39,8 +37,6 @@ export default function DisplayPosts({ displayUser, username }) {
                         <p>{posts[postId].content}</p>
                         <p>{posts[postId].date}</p>
                         <p>Post by: {displayUser}</p>
-                        <AddComment username={username} postId={postId} postUploader={displayUser} key={postId}/>
-                        <DisplayComments comments={posts[postId].comments} username={username} postId={postId} postUser={displayUser}/>
                     </div>
                 ))
             ) : (

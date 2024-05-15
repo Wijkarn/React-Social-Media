@@ -1,4 +1,4 @@
-export default function DisplayComment({ comment, username, commentId, postId, postUser }) {
+export default function DisplayComment({ comment, username, commentId, postId, postUser, setComments }) {
 
     function removeComment(e) {
         e.preventDefault();
@@ -16,6 +16,12 @@ export default function DisplayComment({ comment, username, commentId, postId, p
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(obj)
+            });
+
+            setComments(prevComments => {
+                const updatedComments = { ...prevComments };
+                delete updatedComments[commentId];
+                return updatedComments;
             });
         }
         catch (e) {

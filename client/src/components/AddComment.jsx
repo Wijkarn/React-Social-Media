@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AddComment({ username, postId, postUploader }) {
+export default function AddComment({ username, postId, postUploader, setComments }) {
     const [textOpen, setTextOpen] = useState(false);
 
     function toggleTextArea() {
@@ -19,7 +19,7 @@ export default function AddComment({ username, postId, postUploader }) {
                 return;
             }
 
-            const obj = {
+            const newComment = {
                 postId,
                 postUser: postUploader,
                 commentUser: username,
@@ -31,13 +31,21 @@ export default function AddComment({ username, postId, postUploader }) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(obj)
+                body: JSON.stringify(newComment)
             });
 
             const data = await response.json();
 
             if (data) {
                 setTextOpen(false);
+                setComments(prevComments => ({
+                    ...prevComments,
+                    [data.name]: {
+                        user: username,
+                        content: commentContent,
+                        date: "now"
+                    }
+                }));
             }
             else {
                 alert("Error posting comment!");
@@ -56,7 +64,7 @@ export default function AddComment({ username, postId, postUploader }) {
                 <div>
                     <form onSubmit={postComment}>
                         <input id="post-comment-textarea" name="post-comment-textarea" />
-                        <button className="post-comment-btn">Post comment!</button>
+                        <button className="post-comment-btn" >Post comment!</button>
                     </form>
                 </div>
                 : ""}
