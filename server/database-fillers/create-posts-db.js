@@ -4,9 +4,15 @@ const { createDate } = require("../random-functions.js");
 const boredApiUrl = "https://www.boredapi.com/api/activity";
 const catFactsApiUrl = "https://catfact.ninja/fact";
 
+const untouchedUsers = ["Felix"];
+
 async function start() {
     try {
         const users = await getAllUsers();
+
+        for (const user of untouchedUsers) {
+            delete users[user];
+        }
 
         for (const user in users) {
             createPost(user);

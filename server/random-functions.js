@@ -7,7 +7,7 @@ function createDate() {
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear().toString();
 
-    return `${hours}:${minutes} ${day}-${month}-${year}`;
+    return `${year}-${month}-${day} ${hours}-${minutes}`;
 }
 
 function isASCII(str) {

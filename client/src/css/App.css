@@ -74,6 +74,7 @@ button {
   background-color: var(--twitch-purple);
   padding: 1%;
   border-radius: 10px;
+  min-width: 20vw;
   max-width: 80%;
 }
 

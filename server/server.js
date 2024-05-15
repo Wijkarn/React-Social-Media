@@ -26,10 +26,10 @@ app.listen(PORT, () => {
 
 app.post("/login", async (req, res) => {
     try {
-        const username = req.body.username;
-        const password = req.body.password;
+        const { username, password } = req.body;
 
         const loggedIn = await login(username, password);
+        console.log(loggedIn);
         if (loggedIn) {
             setUuid(username, loggedIn);
         }
@@ -43,8 +43,7 @@ app.post("/login", async (req, res) => {
 
 app.post("/browser-session", async (req, res) => {
     try {
-        const username = req.body.username;
-        const uuid = req.body.uuid;
+        const { username, uuid } = req.body;
 
         const isLoggedIn = await getUuid(username, uuid);
 
@@ -58,11 +57,7 @@ app.post("/browser-session", async (req, res) => {
 
 app.post("/register-user", async (req, res) => {
     try {
-        const firstname = req.body.firstname;
-        const lastname = req.body.lastname;
-        const username = req.body.username;
-        const password = req.body.password;
-        const email = req.body.email;
+        const { firstname, lastname, username, password, email } = req.body;
 
         const userData = {
             [username]: {
@@ -87,9 +82,7 @@ app.post("/register-user", async (req, res) => {
 
 app.post("/upload-post", async (req, res) => {
     try {
-        const username = req.body.username;
-        const title = req.body.title;
-        const content = req.body.content;
+        const { username, title, content } = req.body;
 
         const userData = {
             title,
@@ -108,7 +101,7 @@ app.post("/upload-post", async (req, res) => {
 
 app.post("/get-posts-from-user", async (req, res) => {
     try {
-        const username = req.body.username;
+        const { username } = req.body;
         const posts = await getAllPostsFromUser(username);
         res.json(posts);
     }
@@ -120,8 +113,7 @@ app.post("/get-posts-from-user", async (req, res) => {
 
 app.post("/get-a-post", async (req, res) => {
     try {
-        const username = req.body.username;
-        const postId = req.body.postId;
+        const { username, postId } = req.body;
         const post = await getAPost(username, postId);
         res.json(post);
     }
@@ -133,8 +125,7 @@ app.post("/get-a-post", async (req, res) => {
 
 app.delete("/delete-post", async (req, res) => {
     try {
-        const username = req.body.username;
-        const postId = req.body.postId;
+        const { username, postId } = req.body;
 
         const isDeleted = await deletePost(username, postId);
 
@@ -148,10 +139,7 @@ app.delete("/delete-post", async (req, res) => {
 
 app.post("/upload-comment", async (req, res) => {
     try {
-        const postId = req.body.postId;
-        const postUser = req.body.postUser;
-        const commentUser = req.body.commentUser;
-        const commentContent = req.body.commentContent;
+        const { postId, postUser, commentUser, commentContent } = req.body;
 
         const comment = await postComment(postId, postUser, commentUser, commentContent, createDate());
 
@@ -165,9 +153,7 @@ app.post("/upload-comment", async (req, res) => {
 
 app.delete("/delete-comment", async (req, res) => {
     try {
-        const postId = req.body.postId;
-        const postUser = req.body.postUser;
-        const commentId = req.body.commentId;
+        const { postId, postUser, commentId } = req.body;
 
         const success = await deleteComment(postUser, postId, commentId);
         res.json(success);

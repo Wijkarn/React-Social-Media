@@ -34,6 +34,7 @@ export default function loginForm({ setUsername }) {
             }
             else {
                 localStorage.clear();
+                alert("Wrong credentials!");
             }
         }
         catch (e) {
