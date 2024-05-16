@@ -62,7 +62,7 @@ export default function DisplayPost({ loggedInUser }) {
                     <p>{post.date}</p>
                     {loggedInUser === username ? <button onClick={deletePost} id="delete-post-btn">Delete Post!</button> : ""}
 
-                    <AddComment username={username} postId={postId} postUploader={username} setComments={setComments} />
+                    <AddComment username={loggedInUser} postId={postId} postUploader={username} setComments={setComments} />
 
                     <DisplayComments postId={postId} postUser={username} username={loggedInUser} comments={comments} setComments={setComments}/>
                 </>
