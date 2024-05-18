@@ -25,7 +25,7 @@ export default function DisplayComment({ comment, username, commentId, postId, p
             });
         }
         catch (e) {
-            console.log(e);
+            console.error(e);
         }
     }
 

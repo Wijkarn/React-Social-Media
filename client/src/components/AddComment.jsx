@@ -52,7 +52,7 @@ export default function AddComment({ username, postId, postUploader, setComments
             }
         }
         catch (e) {
-            console.log(e);
+            console.error(e);
             alert("Error posting comment! " + e);
         }
     }

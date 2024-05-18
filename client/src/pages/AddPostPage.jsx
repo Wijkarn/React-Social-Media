@@ -36,8 +36,8 @@ export default function AddPostPage() {
             }
         }
         catch (e) {
-            alert("Error uploading post " + e);
             console.error(e);
+            alert("Error uploading post " + e);
         }
     }
 

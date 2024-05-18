@@ -175,13 +175,13 @@ async function deletePost(username, postId) {
     return null;
 }
 
-async function postComment(postId, postUser, commentUser, commentContent, date) {
+async function postComment(postId, postUser, user, content, date) {
     try {
         const fbUrl = `${getUrl()}posts/${postUser}/${postId}/comments/.json`;
 
         const comment = {
-            user: commentUser,
-            content: commentContent,
+            user,
+            content,
             date
         }
 
@@ -198,7 +198,7 @@ async function postComment(postId, postUser, commentUser, commentContent, date) 
         return data;
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
     }
     return null;
 }
@@ -206,7 +206,7 @@ async function postComment(postId, postUser, commentUser, commentContent, date) 
 async function deleteComment(postUser, postId, commentId) {
     try {
         const fbUrl = `${getUrl()}posts/${postUser}/${postId}/comments/${commentId}.json`;
-        console.log(fbUrl);
+        
         const response = await fetch(fbUrl, {
             method: "DELETE",
             headers: {
@@ -214,10 +214,11 @@ async function deleteComment(postUser, postId, commentId) {
             }
         });
         const data = await response.json();
+
         return data;
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
     }
     return null
 }

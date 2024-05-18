@@ -29,7 +29,7 @@ app.post("/login", async (req, res) => {
         const { username, password } = req.body;
 
         const loggedIn = await login(username, password);
-        console.log(loggedIn);
+        
         if (loggedIn) {
             setUuid(username, loggedIn);
         }
@@ -65,7 +65,6 @@ app.post("/register-user", async (req, res) => {
                 lastname,
                 password,
                 email,
-                uuid: null,
                 created: createDate()
             }
         }
@@ -146,7 +145,7 @@ app.post("/upload-comment", async (req, res) => {
         res.json(comment);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.json(null);
     }
 });
@@ -159,7 +158,7 @@ app.delete("/delete-comment", async (req, res) => {
         res.json(success);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
         res.json(null);
     }
 }); 

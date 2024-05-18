@@ -39,6 +39,7 @@ export default function loginForm({ setUsername }) {
         }
         catch (e) {
             console.error(e);
+            alert("Error logging in!");
         }
     }
 
