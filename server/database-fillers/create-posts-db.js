@@ -19,7 +19,7 @@ async function start() {
         }
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 
@@ -38,7 +38,7 @@ async function createPost(username) {
         console.log(username, post);
     }
     catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 

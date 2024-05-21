@@ -1,4 +1,5 @@
 const { v4: uuid } = require("uuid");
+const { getFetchOptions } = require("./random-functions.js");
 
 function getUrl() {
     return "https://react-social-media-d6626-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -22,14 +23,8 @@ async function login(username, password) {
 
 function setUuid(username, uuid) {
     try {
-        const fbUrl = `${getUrl()}users/${username}.json`;
-        const options = {
-            method: "PATCH",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify({ uuid })
-        }
+        const fbUrl = `${getUrl()}users/${username}/uuid.json`;
+        const options = getFetchOptions("PUT", uuid);
 
         fetch(fbUrl, options);
     }
@@ -73,13 +68,9 @@ async function registerUser(userData) {
         if (!userExists) {
             const fbUrl = `${getUrl()}users.json`;
 
-            const registered = await fetch(fbUrl, {
-                method: "PATCH",
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                },
-                body: JSON.stringify(userData)
-            });
+            const options = getFetchOptions("PATCH", userData);
+
+            const registered = await fetch(fbUrl, options);
 
             const data = await registered.json();
 
@@ -109,13 +100,10 @@ async function getUser(username) {
 async function uploadPost(username, userData) {
     try {
         const fbUrl = `${getUrl()}posts/${username}.json`;
-        const response = await fetch(fbUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify(userData)
-        });
+
+        const options = getFetchOptions("POST", userData);
+
+        const response = await fetch(fbUrl, options);
 
         const data = await response.json();
 
@@ -158,12 +146,10 @@ async function getAPost(username, postId) {
 async function deletePost(username, postId) {
     try {
         const fbUrl = `${getUrl()}posts/${username}/${postId}.json`;
-        const response = await fetch(fbUrl, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            }
-        });
+
+        const options = getFetchOptions("DELETE");
+
+        const response = await fetch(fbUrl, options);
 
         const data = await response.json();
 
@@ -185,13 +171,9 @@ async function postComment(postId, postUser, user, content, date) {
             date
         }
 
-        const response = await fetch(fbUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify(comment)
-        });
+        const options = getFetchOptions("POST", comment);
+
+        const response = await fetch(fbUrl, options);
 
         const data = await response.json();
 
@@ -206,13 +188,10 @@ async function postComment(postId, postUser, user, content, date) {
 async function deleteComment(postUser, postId, commentId) {
     try {
         const fbUrl = `${getUrl()}posts/${postUser}/${postId}/comments/${commentId}.json`;
-        
-        const response = await fetch(fbUrl, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            }
-        });
+
+        const options = getFetchOptions("DELETE");
+
+        const response = await fetch(fbUrl, options);
         const data = await response.json();
 
         return data;
@@ -221,6 +200,32 @@ async function deleteComment(postUser, postId, commentId) {
         console.error(e);
     }
     return null
+}
+
+function deleteUser(username) {
+    try {
+        const fbUrl = `${getUrl()}users/${username}.json`;
+
+        const options = getFetchOptions("DELETE");
+
+        fetch(fbUrl, options);
+    }
+    catch (e) {
+        console.error(e);
+    }
+}
+
+function deleteUserPosts(username) {
+    try {
+        const fbUrl = `${getUrl()}posts/${username}.json`;
+
+        const options = getFetchOptions("DELETE");
+
+        fetch(fbUrl, options);
+    }
+    catch (e) {
+        console.error(e);
+    }
 }
 
 module.exports = {
@@ -234,5 +239,7 @@ module.exports = {
     getAPost,
     deletePost,
     postComment,
-    deleteComment
+    deleteComment,
+    deleteUser,
+    deleteUserPosts
 }

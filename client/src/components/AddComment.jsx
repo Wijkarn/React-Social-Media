@@ -59,7 +59,7 @@ export default function AddComment({ username, postId, postUploader, setComments
 
     return (
         <div>
-            {username ? <button className="open-comment-btn" onClick={toggleTextArea}>{textOpen ? "I don't want to comment!" : "Add a comment to this post!"}</button> : ""}
+            <button className="open-comment-btn" onClick={toggleTextArea}>{textOpen ? "I don't want to comment!" : "Add a comment to this post!"}</button>
             {textOpen ?
                 <div>
                     <form onSubmit={postComment}>

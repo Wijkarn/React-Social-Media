@@ -2,8 +2,22 @@ const express = require("express");
 const app = express();
 const logger = require("morgan");
 const PORT = 5000;
-const { login, setUuid, getUuid, getAllUsers, registerUser, uploadPost, getAllPostsFromUser, getAPost, deletePost, postComment, deleteComment } = require("./database.js");
 const { createDate } = require("./random-functions.js");
+const {
+    login,
+    setUuid,
+    getUuid,
+    getAllUsers,
+    registerUser,
+    uploadPost,
+    getAllPostsFromUser,
+    getAPost,
+    deletePost,
+    postComment,
+    deleteComment,
+    deleteUser,
+    deleteUserPosts
+} = require("./database.js");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -29,7 +43,7 @@ app.post("/login", async (req, res) => {
         const { username, password } = req.body;
 
         const loggedIn = await login(username, password);
-        
+
         if (loggedIn) {
             setUuid(username, loggedIn);
         }
@@ -101,7 +115,9 @@ app.post("/upload-post", async (req, res) => {
 app.post("/get-posts-from-user", async (req, res) => {
     try {
         const { username } = req.body;
+
         const posts = await getAllPostsFromUser(username);
+        
         res.json(posts);
     }
     catch (e) {
@@ -113,7 +129,9 @@ app.post("/get-posts-from-user", async (req, res) => {
 app.post("/get-a-post", async (req, res) => {
     try {
         const { username, postId } = req.body;
+
         const post = await getAPost(username, postId);
+
         res.json(post);
     }
     catch (e) {
@@ -161,4 +179,25 @@ app.delete("/delete-comment", async (req, res) => {
         console.error(e);
         res.json(null);
     }
-}); 
+});
+
+app.delete("/delete-user", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const checkPassword = await login(username, password);
+
+        if (checkPassword) {
+            deleteUser(username);
+            deleteUserPosts(username);
+            res.json(username);
+        }
+        else {
+            res.json(null);
+        }
+    }
+    catch (e) {
+        console.error(e);
+        res.json(null);
+    }
+});

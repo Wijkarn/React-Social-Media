@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function DisplayPosts({ displayUser, username }) {
+export default function DisplayPosts({ displayUser }) {
     const [posts, setPosts] = useState(null);
 
     useEffect(() => {
@@ -29,14 +29,13 @@ export default function DisplayPosts({ displayUser, username }) {
     }, [displayUser]);
 
     return (
-        <ol id="posts-div">
+        <div id="posts-div">
             {posts ? (
                 Object.keys(posts).map(postId => (
                     <div key={postId} className="post">
-                        <h2 className=""><NavLink to={`/profile/${displayUser}/post/${postId}`}> {posts[postId].title}</NavLink></h2>
+                        <h2><NavLink to={`/profile/${displayUser}/post/${postId}`}> {posts[postId].title}</NavLink></h2>
                         <p>{posts[postId].content}</p>
                         <p>{posts[postId].date}</p>
-                        <p>Post by: {displayUser}</p>
                     </div>
                 ))
             ) : (
@@ -44,6 +43,6 @@ export default function DisplayPosts({ displayUser, username }) {
                     <h2>No Posts!</h2>
                 </div>
             )}
-        </ol>
+        </div>
     );
 }

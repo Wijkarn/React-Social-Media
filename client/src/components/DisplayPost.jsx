@@ -12,7 +12,7 @@ export default function DisplayPost({ loggedInUser }) {
 
     const [post, setPost] = useState(loadingPost);
     const [comments, setComments] = useState(null);
-    
+
     const params = useParams();
     const username = params.username;
     const postId = params.postId;
@@ -62,9 +62,9 @@ export default function DisplayPost({ loggedInUser }) {
                     <p>{post.date}</p>
                     {loggedInUser === username ? <button onClick={deletePost} id="delete-post-btn">Delete Post!</button> : ""}
 
-                    <AddComment username={loggedInUser} postId={postId} postUploader={username} setComments={setComments} />
+                    {loggedInUser ? <AddComment username={loggedInUser} postId={postId} postUploader={username} setComments={setComments} /> : ""}
 
-                    <DisplayComments postId={postId} postUser={username} username={loggedInUser} comments={comments} setComments={setComments}/>
+                    {comments ? <DisplayComments postId={postId} postUser={username} username={loggedInUser} comments={comments} setComments={setComments} /> : ""}
                 </>
             ) : (
                 <h2>Post doesn't exist!</h2>

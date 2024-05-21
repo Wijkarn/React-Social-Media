@@ -7,7 +7,7 @@ function createDate() {
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear().toString();
 
-    return `${year}-${month}-${day} ${hours}-${minutes}`;
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
 
 function isASCII(str) {
@@ -17,7 +17,25 @@ function isASCII(str) {
     return asciiRegex.test(str);
 }
 
+function getFetchOptions(method, data) {
+    method.toUpperCase();
+
+    const options = {
+        method,
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }
+
+    if (data) {
+        options.body = JSON.stringify(data);
+    }
+
+    return options;
+}
+
 module.exports = {
     createDate,
-    isASCII
+    isASCII,
+    getFetchOptions
 }

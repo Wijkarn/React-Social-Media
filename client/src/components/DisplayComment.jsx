@@ -4,7 +4,7 @@ export default function DisplayComment({ comment, username, commentId, postId, p
         e.preventDefault();
 
         try {
-            const obj = {
+            const commentToDelete = {
                 commentId,
                 postUser,
                 postId
@@ -15,13 +15,13 @@ export default function DisplayComment({ comment, username, commentId, postId, p
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(obj)
+                body: JSON.stringify(commentToDelete)
             });
 
             setComments(prevComments => {
                 const updatedComments = { ...prevComments };
                 delete updatedComments[commentId];
-                return updatedComments;
+                return Object.keys(updatedComments).length > 0 ? updatedComments : null;
             });
         }
         catch (e) {
