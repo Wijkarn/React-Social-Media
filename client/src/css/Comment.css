@@ -4,6 +4,7 @@
     flex-direction: column;
 }
 
-.remove-comment-btn{
+.remove-comment-btn,
+.comment-div>* {
     width: fit-content;
 }

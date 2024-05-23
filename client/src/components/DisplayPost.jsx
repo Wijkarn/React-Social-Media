@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import AddComment from "./AddComment";
 import DisplayComments from "./DisplayComments";
 
 export default function DisplayPost({ loggedInUser }) {
-    const loadingPost = {
-        title: "Loading Post!",
-        content: "",
-        date: ""
-    }
+    const [loadingText, setLoadingText] = useState("Loading Post.");
+    const loadingPost = useMemo(() => ({
+        title: loadingText
+    }), [loadingText]);
 
     const [post, setPost] = useState(loadingPost);
     const [comments, setComments] = useState(null);
@@ -31,15 +30,28 @@ export default function DisplayPost({ loggedInUser }) {
                 const data = await response.json();
 
                 setPost(data);
-                setComments(data.comments);
+                if (data) {
+                    setComments(data.comments);
+                }
             }
             catch (e) {
+                setPost(null);
                 console.error(e);
-                alert("Error getting posts from user! " + e);
             }
         }
         getPost();
     }, [username, postId]);
+
+    useEffect(() => {
+        if (post && !post.content) {
+            const intervalId = setInterval(() => {
+                setLoadingText(prevText => prevText.split('.').length > 3 ? "Loading Post." : prevText + ".");
+                setPost(loadingPost);
+            }, 250);
+
+            return () => clearInterval(intervalId);
+        }
+    }, [post, loadingPost]);
 
     function deletePost(e) {
         e.preventDefault();
@@ -67,7 +79,7 @@ export default function DisplayPost({ loggedInUser }) {
                     {comments ? <DisplayComments postId={postId} postUser={username} username={loggedInUser} comments={comments} setComments={setComments} /> : ""}
                 </>
             ) : (
-                <h2>Post doesn't exist!</h2>
+                <h2>Error getting post!</h2>
             )}
         </div>
     );

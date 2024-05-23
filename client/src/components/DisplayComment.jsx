@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 export default function DisplayComment({ comment, username, commentId, postId, postUser, setComments }) {
 
     function removeComment(e) {
@@ -31,7 +32,7 @@ export default function DisplayComment({ comment, username, commentId, postId, p
 
     return (
         <div className="comment-div">
-            <h3>{comment.user}</h3>
+            <NavLink to={`/profile/${comment.user}`}><h3>{comment.user}</h3></NavLink>
             <span>{comment.content}</span>
             <span className="comment-date">{comment.date}</span>
             {username === comment.user ? <button className="remove-comment-btn" onClick={removeComment}>Remove comment</button> : ""}
