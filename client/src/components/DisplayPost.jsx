@@ -4,7 +4,7 @@ import AddComment from "./AddComment";
 import DisplayComments from "./DisplayComments";
 
 export default function DisplayPost({ loggedInUser }) {
-    const [loadingText, setLoadingText] = useState("Loading Post.");
+    const [loadingText, setLoadingText] = useState("Loading post.");
     const loadingPost = useMemo(() => ({
         title: loadingText
     }), [loadingText]);
@@ -45,7 +45,7 @@ export default function DisplayPost({ loggedInUser }) {
     useEffect(() => {
         if (post && !post.content) {
             const intervalId = setInterval(() => {
-                setLoadingText(prevText => prevText.split('.').length > 3 ? "Loading Post." : prevText + ".");
+                setLoadingText(prevText => prevText.split('.').length > 3 ? "Loading post." : prevText + ".");
                 setPost(loadingPost);
             }, 250);
 
@@ -74,7 +74,7 @@ export default function DisplayPost({ loggedInUser }) {
                     <p>{post.date}</p>
                     {loggedInUser === username ? <button onClick={deletePost} id="delete-post-btn">Delete Post!</button> : ""}
 
-                    {loggedInUser ? <AddComment username={loggedInUser} postId={postId} postUploader={username} setComments={setComments} /> : ""}
+                    {loggedInUser && post.content ? <AddComment username={loggedInUser} postId={postId} postUploader={username} setComments={setComments} /> : ""}
 
                     {comments ? <DisplayComments postId={postId} postUser={username} username={loggedInUser} comments={comments} setComments={setComments} /> : ""}
                 </>

@@ -117,7 +117,7 @@ app.post("/get-posts-from-user", async (req, res) => {
         const { username } = req.body;
 
         const posts = await getAllPostsFromUser(username);
-        
+
         res.json(posts);
     }
     catch (e) {

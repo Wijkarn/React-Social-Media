@@ -1,30 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function DisplayUsers() {
-    const [users, setUsers] = useState(null);
+    const [loadingText, setLoadingText] = useState("Loading users.");
+    const loadingUsers = useMemo(() => ({
+        loadingUser: {
+            firstname: loadingText
+        }
+    }), [loadingText]);
+    const [users, setUsers] = useState(loadingUsers);
 
     useEffect(() => {
         async function getUsers() {
             try {
-                await fetch("/test")
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data) {
-                            setUsers(data);
-                        }
-                        else {
-                            alert("Error getting users!");
-                        }
-                    });
+                const response = await fetch("test");
+                const data = await response.json();
+
+                setUsers(data);
             }
             catch (e) {
                 console.error(e);
-                alert("Error getting users! " + e);
+                setUsers(null);
             }
         }
         getUsers();
     }, []);
+
+    useEffect(() => {
+        if (users && Object.keys(users)[0] === "loadingUser") {
+            const intervalId = setInterval(() => {
+                setLoadingText(prevText => prevText.split('.').length > 3 ? "Loading users." : prevText + ".");
+                setUsers(loadingUsers);
+            }, 250);
+
+            return () => clearInterval(intervalId);
+        }
+    }, [users, loadingUsers]);
 
     return (
         <ol>
@@ -33,7 +44,7 @@ export default function DisplayUsers() {
                     <li key={username}><NavLink to={`/profile/${username}`}>{users[username].firstname} {users[username].lastname}</NavLink></li>
                 ))
             ) : (
-                <li>Loading...</li>
+                <li>Error getting users!</li>
             )}
         </ol>
     );
